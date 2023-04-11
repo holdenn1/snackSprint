@@ -1,7 +1,11 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import "@/styles/reset.scss";
+import "@/styles/shared.scss";
+import router from "./router";
 
+const app = createApp(App);
 
-const app = createApp(App)
+app.use(router);
 
-app.mount('#app')
+app.mount("#app");
