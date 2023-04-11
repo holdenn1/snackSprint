@@ -4,11 +4,11 @@ html,
 body {
   line-height: 1;
   height: 100%;
-  background: #fff;
 }
 
 #app {
   min-height: 100%;
+  height: 100%; 
   display: flex;
   flex-direction: column;
 }

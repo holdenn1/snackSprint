@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <h1>Sign up</h1>
-  </div>
+  <RegistrationFormWrapper>
+    <SignUpForm />
+  </RegistrationFormWrapper>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SignUpForm from "@/components/forms/SignUpForm.vue";
+import RegistrationFormWrapper from "@/components/UI/wrappers/RegistrationFormWrapper.vue";
+</script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

@@ -1,0 +1,14 @@
+@import "@/styles/variables/variables";
+@import "@/styles/mixins/contentFlexColumn.scss";
+.form{
+  width: 340px;
+  height: 380px;
+  border: $primary-border;
+  border-radius: $primary-border-radius;
+  box-shadow: 1px 1px 6px 1px rgba(184,184,184,1);
+  padding: 40px 20px 20px;
+  box-sizing: border-box;
+  margin: 0 12px;
+  overflow: hidden;
+  @include contentFlexColumn;
+}

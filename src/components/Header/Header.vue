@@ -1,21 +1,27 @@
 <template>
-  <header class="header"><h1>SnakeSprint</h1></header>
+  <header class="header">
+    <RouterLink to="/">
+      <h1>SnakeSprint</h1>
+    </RouterLink>
+  </header>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { RouterLink } from "vue-router";
+</script>
 
-<style lang="scss" scoped> 
-.header{
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    h1{
-        font-size: 28px;
-        font-weight: 500;
-        color: aliceblue;
-    }
+<style lang="scss" scoped>
+@import "@/styles/variables/variables";
+@import "@/styles/mixins/contentFlexCenter.scss";
+.header {
+  width: 100%;
+  height: 80px;
+  @include contentFlexCenter;
+  background-color: $primary-background;
+  h1 {
+    font-size: 28px;
+    font-weight: $fw-title;
+    color: $primary-color;
+  }
 }
 </style>

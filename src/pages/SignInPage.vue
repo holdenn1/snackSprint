@@ -1,7 +1,12 @@
 <template>
-  <div>sign in</div>
+  <RegistrationFormWrapper>
+    <SignInForm /> 
+  </RegistrationFormWrapper>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import RegistrationFormWrapper from "@/components/UI/wrappers/RegistrationFormWrapper.vue";
+import SignInForm from "@/components/forms/SignInForm.vue";
+</script>
 
 <style scoped></style>

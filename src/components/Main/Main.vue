@@ -11,5 +11,6 @@ import { RouterView } from "vue-router";
 <style lang="scss" scoped>
 .main {
   flex: 1 1 auto;
+ 
 }
 </style>

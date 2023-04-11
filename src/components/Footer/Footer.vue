@@ -4,10 +4,11 @@
 
 <script setup lang="ts"></script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/styles/variables/variables";
 .footer {
   width: 100%;
-  height: 80px;
-  background-color: black;
+  height: 50px;
+  background-color: $primary-background;
 }
 </style>
