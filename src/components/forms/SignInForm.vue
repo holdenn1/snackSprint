@@ -32,11 +32,14 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase";
 import { useForm } from "vee-validate";
 import router from "@/router";
+import { useUserStore } from "@/stores/UserStore";
 
 export interface IFormValues {
   email: string;
   password: string;
 }
+
+const userStore = useUserStore()
 
 const { handleSubmit } = useForm<IFormValues>({
   validationSchema: mainFormValidateSchema,
@@ -51,7 +54,7 @@ const onSubmit = handleSubmit((values: IFormValues, { resetForm }) => {
   signInWithEmailAndPassword(auth, values.email, values.password)
     .then(({ user }) => {
       if (!!user.email) {
-        console.log(user.email);
+        userStore.setUser(user.uid, user.email);
       }
       router.push("/");
     })

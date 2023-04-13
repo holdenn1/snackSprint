@@ -10,11 +10,14 @@
 import { RouterLink } from "vue-router";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase";
+import { useUserStore } from "@/stores/UserStore";
+
+const userStore = useUserStore();
 
 const handleLogout = () => {
   signOut(auth)
     .then(() => {
-      console.log("Signed out successfully");
+      userStore.removeUser();
     })
     .catch((e) => {
       console.error(e);
