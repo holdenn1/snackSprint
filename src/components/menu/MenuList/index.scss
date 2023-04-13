@@ -1,0 +1,21 @@
+@import "@/styles/variables/_variables.scss";
+.title-list {
+  font-size: $fz-title;
+  font-weight: $fw-title;
+  margin: 6px 0 10px;
+}
+.main-list {
+  .main-item {
+    font-size: 18px;
+    padding: 6px;
+  }
+}
+.list {
+  margin-top: 10px;
+  text-align: center;
+  .item {
+    font-size: 18px;
+    font-weight: $fw-title;
+    margin-bottom: 10px;
+  }
+}
