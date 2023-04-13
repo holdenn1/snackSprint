@@ -1,9 +1,9 @@
 <template>
-  <Pizza/>
+  <PizzaList />
 </template>
 
 <script setup lang="ts">
-import Pizza from '@/components/Goods/Pizza/index.vue'
+import  PizzaList from "@/components/Goods/Pizza/PizzaList.vue";
 </script>
 
 <style scoped></style>
