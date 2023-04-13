@@ -26,11 +26,9 @@
 import FormInput from "@/components/UI/form/inputs/FormInput.vue";
 import SubmitButton from "@/components/UI/form/inputs/SubmitButton.vue";
 import mainFormValidateSchema from "@/utils/validate/mainFormValidateSchema";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useUserStore } from "@/stores/UserStore";
-import { auth } from "@/firebase";
 import { useForm } from "vee-validate";
-import router from "@/router";
+
 
 export interface IFormValues {
   email: string;
@@ -49,16 +47,10 @@ const formValues: IFormValues = {
 };
 
 const onSubmit = handleSubmit((values: IFormValues, { resetForm }) => {
-  createUserWithEmailAndPassword(auth, values.email, values.password)
-    .then(({ user }) => {
-      if (!!user.email) {
-        userStore.setUser(user.uid, user.email);
-      }
-      router.push("/");
-    })
-    .catch((e) => console.error(e));
+  userStore.signUpUser(values.email, values.password);
   resetForm();
 });
+
 </script>
 
 <style lang="scss" scoped>
