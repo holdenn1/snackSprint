@@ -11,7 +11,7 @@ import PizzaItem from "@/components/Goods/Pizza/PizzaItem.vue";
 <style lang="scss" scoped>
 .pizza-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 260px);
+  grid-template-columns: repeat(auto-fill, 310px);
   grid-auto-rows: 360px;
   justify-items: center;
   justify-content: center;

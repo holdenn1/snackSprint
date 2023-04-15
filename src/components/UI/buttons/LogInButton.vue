@@ -1,10 +1,11 @@
 <template>
   <RouterLink
-    class="logInBtn"
+    class="logIn-btn"
     :class="{ isAuth: !userStore.user.email }"
     to="/sign-up"
-    ><img :src="logIn" alt=""
-  /></RouterLink>
+  >
+    <img :src="logIn" alt="" />
+  </RouterLink>
 </template>
 
 <script setup lang="ts">
@@ -12,12 +13,10 @@ import { RouterLink } from "vue-router";
 import logIn from "@/img/icons/icons8-log-in-64.png";
 import { useUserStore } from "@/stores/UserStore";
 const userStore = useUserStore();
-
-
 </script>
 
 <style lang="scss" scoped>
-.logInBtn {
+.logIn-btn {
   display: none;
   position: fixed;
   right: 20px;

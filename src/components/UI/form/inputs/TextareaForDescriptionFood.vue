@@ -1,9 +1,9 @@
 <template>
-  <div class="form-input">
-    <label class="label-input" v-if="label" :for="name">{{ label }}</label>
-    <input
-      class="input"
-      :type="type"
+  <div class="wrapper">
+    <label class="label-area" v-if="label" :for="name">{{ label }}</label>
+    <textarea
+      class="area"
+      :class="{ 'error-area': errorMessage }"
       :id="name"
       :name="name"
       :value="inputValue"
@@ -22,7 +22,6 @@ import { useField } from "vee-validate";
 import { toRef } from "vue";
 
 const props = defineProps<{
-  type: string;
   name: string;
   value: string;
   label?: string;
@@ -44,25 +43,29 @@ const {
 <style lang="scss" scoped>
 @import "@/styles/mixins/contentFlexColumn.scss";
 @import "@/styles/variables/variables";
-.form-input {
+.wrapper {
   @include contentFlexColumn;
-  .label-input {
+  .label-area {
     font-size: $fz-title;
     font-weight: $fw-title;
     color: $secondary-color;
     margin-bottom: 10px;
   }
-  .input {
+  .area {
     padding: 10px 8px;
-    width: 220px;
+    width: 420px;
+    height: 120px;
     margin-bottom: 10px;
-    border-radius: $primary-border-radius;
+    resize: none;
     border: $primary-border;
-    &:focus{
+    &:focus {
       border: 1px solid black;
     }
   }
-  .error{
+  .error-area {
+    border: 1px solid red;
+  }
+  .error {
     text-align: center;
     color: red;
   }

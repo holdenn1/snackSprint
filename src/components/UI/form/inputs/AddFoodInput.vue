@@ -1,8 +1,9 @@
 <template>
-  <div class="form-input">
+  <div class="add-food-input">
     <label class="label-input" v-if="label" :for="name">{{ label }}</label>
     <input
       class="input"
+      :class="{'error-input': errorMessage }"
       :type="type"
       :id="name"
       :name="name"
@@ -44,7 +45,7 @@ const {
 <style lang="scss" scoped>
 @import "@/styles/mixins/contentFlexColumn.scss";
 @import "@/styles/variables/variables";
-.form-input {
+.add-food-input {
   @include contentFlexColumn;
   .label-input {
     font-size: $fz-title;
@@ -54,17 +55,22 @@ const {
   }
   .input {
     padding: 10px 8px;
-    width: 220px;
+    width: 420px;
     margin-bottom: 10px;
-    border-radius: $primary-border-radius;
-    border: $primary-border;
-    &:focus{
-      border: 1px solid black;
+    border: none;
+    border-bottom: $primary-border;
+    &:focus {
+      border: none;
+      border-bottom: 1px solid black;
     }
   }
-  .error{
+  .error-input{
+    border-bottom: 1px solid red;
+  }
+  .error {
     text-align: center;
     color: red;
+    margin-bottom: 6px;
   }
 }
 </style>

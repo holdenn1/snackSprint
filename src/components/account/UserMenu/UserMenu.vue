@@ -1,13 +1,13 @@
 <template>
-  <div class="wrapper">
+  <div class="user-menu">
     <img
       :src="user"
-      class="userAccountBtn"
+      class="user-account-btn"
       :class="{ isAuth: userStore.user.email }"
       alt=""
     />
-    <ul class="userMenu" v-show="userStore.user.email">
-      <li class="userMenu__item">
+    <ul class="user-menu" v-show="userStore.user.email">
+      <li class="user-menu__item">
         <span @click="handleLogout">Logout</span>
       </li>
     </ul>
@@ -27,8 +27,8 @@ const handleLogout = () => {
 
 <style lang="scss" scoped>
 @import "@/styles/variables/variables";
-.wrapper {
-  .userAccountBtn {
+.user-menu {
+  .user-account-btn {
     position: fixed;
     right: 20px;
     top: 8px;
@@ -36,7 +36,7 @@ const handleLogout = () => {
     display: none;
   }
 
-  .userMenu {
+  .user-menu {
     display: none;
     position: fixed;
     top: 80px;
@@ -61,7 +61,7 @@ const handleLogout = () => {
     display: block;
     cursor: pointer;
   }
-  &:hover .userMenu {
+  &:hover .user-menu {
     display: block;
   }
 }

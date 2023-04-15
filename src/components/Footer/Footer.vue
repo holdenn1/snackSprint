@@ -7,8 +7,9 @@
 <style lang="scss" scoped>
 @import "@/styles/variables/variables";
 .footer {
-  width: 100%;
   height: 50px;
   background-color: $primary-background;
+  width: 100%;
+  flex: 0 0 auto;
 }
 </style>

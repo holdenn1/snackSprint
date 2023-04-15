@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import SignUpForm from "@/components/forms/SignUpForm.vue";
+import SignUpForm from "@/components/forms/mainForms/SignUpForm.vue";
 import RegistrationFormWrapper from "@/components/UI/wrappers/RegistrationFormWrapper.vue";
 </script>
 
