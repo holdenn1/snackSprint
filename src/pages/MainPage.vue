@@ -1,17 +1,15 @@
 <template>
- <!--  <div class="wrapper">
-     <MainMenu />
+  <div class="wrapper">
+    <MainMenu />
     <div class="goods-container">
       <Pizza />
-    </div> 
-  </div> -->
-  <AddGoodsForm/>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import MainMenu from "@/components/menu/MainMenu.vue";
 import Pizza from "@/components/Goods/Pizza/index.vue";
-import AddGoodsForm from "@/components/forms/AddGoodsForm/AddGoodsForm.vue";
 </script>
 
 <style lang="scss" scoped>

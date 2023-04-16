@@ -42,7 +42,11 @@ export const useUserStore = defineStore("userStore", () => {
         if (!!user.email) {
           setUser(user.uid, user.email);
         }
-        router.push("/");
+        if (user.email === "caulfieldd17@gmail.com") {
+          router.push("/admin");
+        } else {
+          router.push("/");
+        }
       })
       .catch((e) => console.error(e));
   }
@@ -51,8 +55,10 @@ export const useUserStore = defineStore("userStore", () => {
     signOut(auth)
       .then(() => {
         removeUser();
+        router.push("/");
       })
       .catch((e) => {
+        router.push("/");
         console.error(e);
       });
   }
@@ -63,6 +69,6 @@ export const useUserStore = defineStore("userStore", () => {
     removeUser,
     signUpUser,
     signInUser,
-    logoutUser
+    logoutUser,
   };
 });

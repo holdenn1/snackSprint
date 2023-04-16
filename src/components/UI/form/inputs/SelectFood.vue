@@ -3,8 +3,8 @@
     <label :for="name" class="label-food">{{ label }}</label>
     <Field class="select-food" :name="name" as="select">
       <option value="" disabled>{{ defaultValue }}</option>
-      <option v-for="food of products" value="food" :key="food">
-        {{ food }}
+      <option v-for="food in products" :value="food.value" :key="food.id">
+        {{ food.food }}
       </option>
     </Field>
     <ErrorMessage class="error" :name="name" />
@@ -14,7 +14,11 @@
 <script setup lang="ts">
 import { ErrorMessage, Field } from "vee-validate";
 
-const products = ["Піца", "Бургери", "Напої"];
+const products = [
+  { id: 1, value: "pizza", food: "Піца" },
+  { id: 2, value: "burgers", food: "Бургери" },
+  { id: 3, value: "drinks", food: "Напої" },
+];
 
 const props = defineProps<{
   label: string;

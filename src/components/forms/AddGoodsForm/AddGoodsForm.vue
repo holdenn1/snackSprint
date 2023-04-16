@@ -15,14 +15,14 @@
         placeholder="Опис"
       />
       <AddFoodInput
-        type="text"
+        type="number"
         name="productPrice"
         :value="formValues.productPrice"
         label="Ціна"
         placeholder="Ціна"
       />
       <AddFoodInput
-        type="text"
+        type="number"
         name="productWeight"
         :value="formValues.productWeight"
         label="Вага"
@@ -53,6 +53,13 @@ import SelectFood from "@/components/UI/form/inputs/SelectFood.vue";
 import UploadFoodCoverInput from "@/components/UI/form/inputs/UploadFoodCoverInput.vue";
 import SubmitButton from "@/components/UI/form/inputs/SubmitButton.vue";
 import foodFormValidateSchema from "@/utils/validate/foodFormValidateSchema";
+import {
+  ref as refStorafe,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import { ref as refDatabase, push, set } from "firebase/database";
+import { realTimeDb, storage } from "@/firebase";
 
 interface IGoodsForm {
   productName: string;
@@ -60,7 +67,7 @@ interface IGoodsForm {
   productPrice: string;
   productWeight: string;
   food: string;
-  foodCover: string;
+  foodCover: any | string;
 }
 
 const { handleSubmit } = useForm<IGoodsForm>({
@@ -76,8 +83,41 @@ const formValues: IGoodsForm = {
   foodCover: "",
 };
 
-const onSubmit = handleSubmit((values: IGoodsForm, { resetForm }) => {
+const onSubmit = handleSubmit(async (values: IGoodsForm, { resetForm }) => {
   console.log(values);
+
+  const metadata = {
+    contentType: "image/jpeg",
+  };
+
+  const storageRef = refStorafe(storage, "images/" + values.foodCover.name);
+
+  const uploadFoodCover = uploadBytesResumable(
+    storageRef,
+    values.foodCover,
+    metadata
+  );
+
+  await new Promise((res, rej) => {
+    uploadFoodCover.on("state_changed", null, rej, res as () => void);
+  });
+
+  const downloadURL = await getDownloadURL(uploadFoodCover.snapshot.ref);
+
+  const foodRef = await push(refDatabase(realTimeDb, `goods/${values.food}/`));
+
+  const sendFood = await set(
+    refDatabase(realTimeDb, `goods/${values.food}/${foodRef.key}`),
+    {
+      id: foodRef.key,
+      productName: values.productName,
+      productDescription: values.productDescription,
+      productPrice: values.productPrice,
+      productWeight: values.productWeight,
+      food: values.food,
+      foodCover: downloadURL,
+    }
+  );
 
   resetForm();
 });
