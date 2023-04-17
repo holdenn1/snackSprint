@@ -1,10 +1,10 @@
 <template>
-  <div class="select-food">
-    <label :for="name" class="label-food">{{ label }}</label>
-    <Field class="select-food" :name="name" as="select">
+  <div class="select-product">
+    <label :for="name" class="label-product">{{ label }}</label>
+    <Field class="select-product" :name="name" as="select">
       <option value="" disabled>{{ defaultValue }}</option>
-      <option v-for="food in products" :value="food.value" :key="food.id">
-        {{ food.food }}
+      <option v-for="product in products" :value="product.value" :key="product.id">
+        {{ product.product }}
       </option>
     </Field>
     <ErrorMessage class="error" :name="name" />
@@ -12,13 +12,15 @@
 </template>
 
 <script setup lang="ts">
+import type { IProduct } from "@/types";
 import { ErrorMessage, Field } from "vee-validate";
+import { ref } from "vue";
 
-const products = [
-  { id: 1, value: "pizza", food: "Піца" },
-  { id: 2, value: "burgers", food: "Бургери" },
-  { id: 3, value: "drinks", food: "Напої" },
-];
+const products =  ref<IProduct[]>([
+  { id: 1, value: "pizza", product: "Піца" },
+  { id: 2, value: "burgers", product: "Бургери" },
+  { id: 3, value: "drinks", product: "Напої" },
+]);
 
 const props = defineProps<{
   label: string;
@@ -29,17 +31,17 @@ const props = defineProps<{
 
 <style lang="scss" scoped>
 @import "@/styles/variables/_variables.scss";
-.select-food {
+.select-product {
   display: flex;
   align-items: center;
   flex-direction: column;
-  .label-food {
+  .label-product {
     font-size: $fz-title;
     font-weight: $fw-title;
     color: $secondary-color;
     margin-top: 12px;
   }
-  .select-food {
+  .select-product {
     width: 100%;
     height: 32px;
     border: $primary-border;

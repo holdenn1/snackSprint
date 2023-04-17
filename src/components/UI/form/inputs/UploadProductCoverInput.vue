@@ -1,27 +1,37 @@
 <template>
   <div class="upload-cover">
-    <label :for="name" class="label-cover-food">{{ label }}</label>
-    <Field :name="name" v-slot="{ handleChange, handleBlur }">
-      <input
-        class="upload-cover__input"
-        type="file"
-        :value="value"
-        @change="handleChange"
-        @blur="handleBlur"
-      />
-    </Field>
-    <ErrorMessage class="error" :name="name" />
+    <label :for="name" class="label-cover-product">{{ label }}</label>
+    <input
+      class="upload-cover__input"
+      type="file"
+      :value="value"
+      @change="handleChange"
+      @blur="handleBlur"
+    />
+    <p class="error" v-show="errorMessage || meta.valid">
+      {{ errorMessage }}
+    </p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Field, ErrorMessage } from "vee-validate";
+import { useField } from "vee-validate";
+import { toRef } from "vue";
 
 const props = defineProps<{
   name: string;
   label: string;
   value: string;
 }>();
+
+const name = toRef(props, "name");
+
+const { value, errorMessage, handleBlur, handleChange, meta } = useField(
+  name,
+  undefined,
+  { initialValue: props.value }
+);
+
 </script>
 
 <style lang="scss" scoped>
@@ -30,7 +40,7 @@ const props = defineProps<{
   display: flex;
   align-items: center;
   flex-direction: column;
-  .label-cover-food {
+  .label-cover-product {
     font-size: $fz-title;
     font-weight: $fw-title;
     color: $secondary-color;

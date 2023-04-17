@@ -1,9 +1,0 @@
-<template>
-  <Pizza/>
-</template>
-
-<script setup lang="ts">
-import Pizza from '@/components/Goods/Pizza/index.vue'
-</script>
-
-<style scoped></style>

@@ -1,22 +1,17 @@
 <template>
-  <div class="pizza-item">
-    <img
-      class="pizza-item__img"
-      src="https://smaki-maki.com/wp-content/uploads/sites/4/2021/09/peperoni.jpg"
-      alt=""
-    />
-    <h3 class="pizza-item__title">Піца Пепероні</h3>
-    <div class="pizza-item__description">
-      <p>Неаполітанський соус, сир моцарела, салямі чорізо</p>
+  <div class="products" v-for="product in products" :key="product.id">
+    <img class="products__img" :src="product.productCover" alt="" />
+    <h3 class="products__title">{{ product.productName }}</h3>
+    <div class="products__description">
+      <p>{{ product.productDescription }}</p>
     </div>
     <div class="price-and-buy">
-      <span class="price-and-buy__price">110.00 грн.</span>
-      <span>320 г</span>
+      <span class="price-and-buy__price">{{ product.productPrice }} грн.</span>
+      <span>{{ product.productWeight }} г</span>
       <button class="price-and-buy__buy">Замовити</button>
     </div>
-  </div>
 
-  <div class="pizza-item">
+    <!--   <div class="pizza-item">
     <img
       class="pizza-item__img"
       src="https://smaki-maki.com/wp-content/uploads/sites/4/2021/09/peperoni.jpg"
@@ -169,16 +164,23 @@
       <span>320 г</span>
       <button class="price-and-buy__buy">Замовити</button>
     </div>
+  </div> -->
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { FetchProducts } from "@/types";
+
+const props = defineProps<{
+  products: FetchProducts[];
+}>();
+</script>
 
 <style lang="scss" scoped>
 @import "@/styles/variables/variables";
 @import "@/styles/mixins/contentFlexColumn.scss";
 
-.pizza-item {
+.products {
   width: 300px;
   height: 340px;
   border: 1px solid #cecece;

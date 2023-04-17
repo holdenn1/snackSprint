@@ -26,15 +26,11 @@
 
 <script setup lang="ts">
 import FormInput from "@/components/UI/form/inputs/FormInput.vue";
-import SubmitButton from "@/components/UI/form/inputs/SubmitButton.vue";
 import mainFormValidateSchema from "@/utils/validate/mainFormValidateSchema";
 import { useForm } from "vee-validate";
 import { useUserStore } from "@/stores/UserStore";
-
-export interface IFormValues {
-  email: string;
-  password: string;
-}
+import SubmitButton from "@/components/UI/form/inputs/SubmitButton.vue";
+import type { IFormValues } from "@/types";
 
 const userStore = useUserStore();
 

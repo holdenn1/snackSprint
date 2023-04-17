@@ -9,6 +9,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useUserStore = defineStore("userStore", () => {
+
   const user = ref({
     id: "",
     email: "",
@@ -17,7 +18,6 @@ export const useUserStore = defineStore("userStore", () => {
   function setUser(id: string, email: string) {
     user.value.id = id;
     user.value.email = email;
-    console.log(1);
   }
 
   function removeUser() {

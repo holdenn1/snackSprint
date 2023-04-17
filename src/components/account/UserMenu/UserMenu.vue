@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import user from "@/img//icons//icons8-user-64.png";
+import user from "@/img/icons/icons8-user-64.png";
 import { useUserStore } from "@/stores/UserStore";
 
 const userStore = useUserStore();
@@ -35,7 +35,7 @@ const handleLogout = () => {
     padding-bottom: 12px;
     display: none;
   }
-
+  
   .user-menu {
     display: none;
     position: fixed;

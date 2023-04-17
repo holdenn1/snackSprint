@@ -2,7 +2,9 @@
   <button class="submit-btn" type="submit"><slot /></button>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+</script>
 
 <style lang="scss" scoped>
 @import "@/styles/variables/variables";

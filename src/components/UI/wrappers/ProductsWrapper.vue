@@ -1,15 +1,14 @@
 <template>
-  <div class="pizza-list">
-    <PizzaItem />
+  <div class="products-wrapper">
+    <slot />
   </div>
 </template>
 
-<script setup lang="ts">
-import PizzaItem from "@/components/Goods/Pizza/PizzaItem.vue";
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-.pizza-list {
+.products-wrapper {
+  margin: 12px;
   display: grid;
   grid-template-columns: repeat(auto-fill, 310px);
   grid-auto-rows: 360px;

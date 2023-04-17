@@ -1,5 +1,5 @@
 <template>
-  <div class="add-food-input">
+  <div class="add-product-input">
     <label class="label-input" v-if="label" :for="name">{{ label }}</label>
     <input
       class="input"
@@ -45,7 +45,7 @@ const {
 <style lang="scss" scoped>
 @import "@/styles/mixins/contentFlexColumn.scss";
 @import "@/styles/variables/variables";
-.add-food-input {
+.add-product-input {
   @include contentFlexColumn;
   .label-input {
     font-size: $fz-title;
