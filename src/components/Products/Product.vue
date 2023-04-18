@@ -8,13 +8,23 @@
     <div class="price-and-buy">
       <span class="price-and-buy__price">{{ product.productPrice }} грн.</span>
       <span>{{ product.productWeight }} г</span>
-      <button class="price-and-buy__buy">Замовити</button>
+      <button @click="orderProduct(product)" class="price-and-buy__buy">
+        Замовити
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useOrderStore } from "@/stores/OrderStore";
 import type { FetchProducts } from "@/types";
+
+const orderStore = useOrderStore()
+
+function orderProduct(product: FetchProducts) {
+  orderStore.setProductModal();
+  orderStore.setCurrentProduct(product);
+}
 
 const props = defineProps<{
   products: FetchProducts[];

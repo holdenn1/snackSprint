@@ -1,0 +1,139 @@
+<template>
+  <div
+    class="product-modal-wrapper"
+    v-show="orderStore.order.isProductModalVisible"
+    @click="closeOrder"
+  >
+    <div @click.stop class="product-modal">
+      <div class="product" v-for="product in orderStore.order.currentProduct">
+        <img :src="product.productCover" class="product__photo" />
+        <div class="product__info">
+          <h3 class="product__title">{{ product.productName }}</h3>
+          <span class="product__price">{{ product.productPrice }} грн</span>
+        </div>
+      </div>
+      <div class="product__amount">
+        <div class="ctrl-amount">
+          <button class="amount-btn">Думаю досить</button>
+          <span class="amount">0 грн</span>
+          <button class="amount-btn">Хочу ще</button>
+        </div>
+        <span class="amount-all">0 грн</span>
+      </div>
+      <div @click="closeOrder" class="basket">
+        <span>Додати в кошик</span>
+        <img class="basket-img" :src="basket" alt="" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useOrderStore } from "@/stores/OrderStore";
+import basket from "@/img/icons/icons8-shopping-basket-smal30.png";
+
+const orderStore = useOrderStore();
+
+function closeOrder() {
+  orderStore.setProductModal();
+  orderStore.removeCurentProduct();
+}
+</script>
+
+<style lang="scss" scoped>
+@import "@/styles/mixins/contentFlexCenter.scss";
+@import "@/styles/variables/variables";
+.product-modal-wrapper {
+  position: fixed;
+  background-color: rgb(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include contentFlexCenter;
+  .product-modal {
+    max-width: 720px;
+    width: 100%;
+    max-height: 360px;
+    height: 100%;
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    overflow: hidden;
+    border-radius: $primary-border-radius;
+    position: relative;
+    .product {
+      display: grid;
+      grid-template-columns: 190px minmax(80px, 260px);
+      margin-bottom: 30px;
+      &__photo {
+        width: 160px;
+        height: 160px;
+        margin-right: 20px;
+        object-fit: cover;
+      }
+      &__info {
+        margin: 0 10px;
+      }
+      &__title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      &__price {
+        font-size: 20px;
+        font-size: $fw-title;
+      }
+      &__amount {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .ctrl-amount {
+          max-width: 500px;
+          width: 100%;
+          margin-bottom: 30px;
+          display: flex;
+          justify-content: space-around;
+          .amount-btn {
+            width: 190px;
+            height: 40px;
+            border: $primary-border;
+            border-radius: $primary-border-radius;
+            background-color: $primary-background;
+            color: $primary-color;
+            font-weight: $fw-title;
+          }
+          .amount {
+            font-size: $fz-title;
+            font-weight: $fw-title;
+            text-align: center;
+            margin: 0 10px;
+          }
+        }
+        .amount-all {
+          font-size: $fz-title;
+          font-weight: $fw-title;
+        }
+      }
+    }
+    .basket {
+      background-color: $primary-background;
+      color: $primary-color;
+      width: 180px;
+      padding: 10px;
+      border-radius: $primary-border-radius;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      span {
+        font-weight: $fw-title;
+      }
+    }
+  }
+}
+</style>

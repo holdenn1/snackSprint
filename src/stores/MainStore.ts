@@ -12,7 +12,8 @@ export const useMainStore = defineStore("mainStore", () => {
     salads: FetchProducts[];
     drinks: FetchProducts[];
     checkedProducts: string[];
-    error: boolean
+    error: boolean;
+   
   }>({
     pizza: [],
     burgers: [],
@@ -20,22 +21,22 @@ export const useMainStore = defineStore("mainStore", () => {
     salads: [],
     drinks: [],
     checkedProducts: [],
-    error: false
+    error: false,
+    
   });
 
-  
   async function fetchProducts() {
     try {
-      main.value.error = false
+      main.value.error = false;
       const userChatRef = refDatabase(realTimeDb, `products/`);
       onValue(userChatRef, (snapshot) => {
         const data = snapshot.val();
         if (data !== null) {
-          setProducts(Object.values(data))
+          setProducts(Object.values(data));
         }
       });
     } catch (e) {
-      main.value.error = true
+      main.value.error = true;
       console.error(e);
     }
   }
@@ -52,10 +53,11 @@ export const useMainStore = defineStore("mainStore", () => {
     main.value.checkedProducts = products;
   }
 
+ 
   return {
     main,
     setProducts,
     setCheckedProducts,
-    fetchProducts
+    fetchProducts,
   };
 });
