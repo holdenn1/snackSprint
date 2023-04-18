@@ -4,13 +4,11 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import { ref as refDatabase, push, set, onValue } from "firebase/database";
+import { ref as refDatabase, push, set } from "firebase/database";
 import { realTimeDb, storage } from "@/firebase";
 import type { IProductForm } from "@/types";
-import { useMainStore } from "@/stores/MainStore";
 
 export const useAdminStore = defineStore("adminStore", () => {
-  const mainStore = useMainStore();
 
   async function uploadProduct(product: IProductForm) {
     try {
@@ -51,22 +49,8 @@ export const useAdminStore = defineStore("adminStore", () => {
     }
   }
 
-  async function fetchProducts() {
-    try {
-      const userChatRef = refDatabase(realTimeDb, `products/`);
-      onValue(userChatRef, (snapshot) => {
-        const data = snapshot.val();
-        if (data !== null) {
-          mainStore.setProducts(Object.values(data))
-        }
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  }
 
   return {
     uploadProduct,
-    fetchProducts,
   };
 });

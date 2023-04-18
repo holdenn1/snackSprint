@@ -3,7 +3,11 @@
     <label :for="name" class="label-product">{{ label }}</label>
     <Field class="select-product" :name="name" as="select">
       <option value="" disabled>{{ defaultValue }}</option>
-      <option v-for="product in products" :value="product.value" :key="product.id">
+      <option
+        v-for="product in products"
+        :value="product.value"
+        :key="product.id"
+      >
         {{ product.product }}
       </option>
     </Field>
@@ -16,10 +20,12 @@ import type { IProduct } from "@/types";
 import { ErrorMessage, Field } from "vee-validate";
 import { ref } from "vue";
 
-const products =  ref<IProduct[]>([
+const products = ref<IProduct[]>([
   { id: 1, value: "pizza", product: "Піца" },
   { id: 2, value: "burgers", product: "Бургери" },
-  { id: 3, value: "drinks", product: "Напої" },
+  { id: 3, value: "roles", product: "Роли" },
+  { id: 4, value: "salads", product: "Салати" },
+  { id: 5, value: "drinks", product: "Напої" },
 ]);
 
 const props = defineProps<{

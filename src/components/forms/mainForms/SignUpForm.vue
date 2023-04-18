@@ -1,5 +1,5 @@
 <template>
-  <form class="form" :initial-values="formValues" @submit="onSubmit">
+  <form class="form" @submit="onSubmit">
     <FormInput
       type="email"
       name="email"
@@ -30,23 +30,22 @@ import { useForm } from "vee-validate";
 import SubmitButton from "@/components/UI/form/inputs/SubmitButton.vue";
 import type { IFormValues } from "@/types";
 
-
 const userStore = useUserStore();
-
-const { handleSubmit } = useForm<IFormValues>({
-  validationSchema: mainFormValidateSchema,
-});
 
 const formValues: IFormValues = {
   email: "",
   password: "",
 };
 
+const { handleSubmit } = useForm<IFormValues>({
+  initialValues: formValues,
+  validationSchema: mainFormValidateSchema,
+});
+
 const onSubmit = handleSubmit((values: IFormValues, { resetForm }) => {
   userStore.signUpUser(values.email, values.password);
   resetForm();
 });
-
 </script>
 
 <style lang="scss" scoped>

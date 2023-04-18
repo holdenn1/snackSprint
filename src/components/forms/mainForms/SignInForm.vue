@@ -1,5 +1,5 @@
 <template>
-  <form class="form" :initial-values="formValues" @submit="onSubmit">
+  <form class="form" @submit="onSubmit">
     <div>
       <FormInput
         type="email"
@@ -34,14 +34,15 @@ import type { IFormValues } from "@/types";
 
 const userStore = useUserStore();
 
-const { handleSubmit } = useForm<IFormValues>({
-  validationSchema: mainFormValidateSchema,
-});
-
 const formValues: IFormValues = {
   email: "",
   password: "",
 };
+
+const { handleSubmit } = useForm<IFormValues>({
+  initialValues: formValues,
+  validationSchema: mainFormValidateSchema,
+});
 
 const onSubmit = handleSubmit((values: IFormValues, { resetForm }) => {
   userStore.signInUser(values.email, values.password);

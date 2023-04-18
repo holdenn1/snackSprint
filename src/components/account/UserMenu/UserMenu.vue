@@ -7,8 +7,20 @@
       alt=""
     />
     <ul class="user-menu" v-show="userStore.user.email">
+      <li
+        v-if="userStore.user.email == 'caulfieldd17@gmail.com'"
+        class="user-menu__item"
+      >
+        <span @click="handleLogout">Вийти</span>
+      </li>
       <li class="user-menu__item">
-        <span @click="handleLogout">Logout</span>
+        <span><RouterLink to="/">Головна</RouterLink> </span>
+      </li>
+      <li
+        v-if="userStore.user.email == 'caulfieldd17@gmail.com'"
+        class="user-menu__item"
+      >
+        <span><RouterLink to="/admin">Адмінка</RouterLink> </span>
       </li>
     </ul>
   </div>
@@ -17,6 +29,7 @@
 <script setup lang="ts">
 import user from "@/img/icons/icons8-user-64.png";
 import { useUserStore } from "@/stores/UserStore";
+import { RouterLink } from "vue-router";
 
 const userStore = useUserStore();
 
@@ -35,7 +48,7 @@ const handleLogout = () => {
     padding-bottom: 12px;
     display: none;
   }
-  
+
   .user-menu {
     display: none;
     position: fixed;
@@ -46,7 +59,9 @@ const handleLogout = () => {
 
     &__item {
       padding: 8px 6px;
-      span {
+
+      span,
+      a {
         color: $primary-color;
         cursor: pointer;
         font-weight: $fw-title;

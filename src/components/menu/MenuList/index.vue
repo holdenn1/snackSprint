@@ -1,15 +1,13 @@
 <template>
   <div>
-    <ProductsList />
-    <DeliveryList />
+    <ProductsMenuList />
   </div>
-  <AboutCompanyList />
+  <AboutCompanyMenuList />
 </template>
 
 <script setup lang="ts">
-import ProductsList from "@/components/menu/MenuList/ProductssList.vue";
-import DeliveryList from "@/components/menu/MenuList/DeliveryList.vue";
-import AboutCompanyList from "@/components/menu/MenuList/AboutCompanyList.vue";
+import ProductsMenuList from "@/components/menu/MenuList/ProductsMenuList.vue";
+import AboutCompanyMenuList from "@/components/menu/MenuList/AboutCompanyMenuList.vue";
 </script>
 
 <style lang="scss" scoped>

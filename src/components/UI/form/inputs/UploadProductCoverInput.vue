@@ -1,37 +1,27 @@
 <template>
   <div class="upload-cover">
     <label :for="name" class="label-cover-product">{{ label }}</label>
-    <input
-      class="upload-cover__input"
-      type="file"
-      :value="value"
-      @change="handleChange"
-      @blur="handleBlur"
-    />
-    <p class="error" v-show="errorMessage || meta.valid">
-      {{ errorMessage }}
-    </p>
+    <Field :name="name" v-slot="{ handleChange, handleBlur }">
+      <input
+        type="file"
+        :name="name"
+        class="upload-cover__input"
+        @change="handleChange"
+        @blur="handleBlur"
+      />
+    </Field>
+    <ErrorMessage class="error" :name="name" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useField } from "vee-validate";
-import { toRef } from "vue";
+import { ErrorMessage, Field } from "vee-validate";
 
 const props = defineProps<{
   name: string;
   label: string;
   value: string;
 }>();
-
-const name = toRef(props, "name");
-
-const { value, errorMessage, handleBlur, handleChange, meta } = useField(
-  name,
-  undefined,
-  { initialValue: props.value }
-);
-
 </script>
 
 <style lang="scss" scoped>
@@ -48,8 +38,10 @@ const { value, errorMessage, handleBlur, handleChange, meta } = useField(
   }
   &__input {
     margin: 12px 0 24px;
-    cursor: pointer;
+    width: 180px;
+    color: transparent;
     &::-webkit-file-upload-button {
+      cursor: pointer;
       width: 180px;
       height: 32px;
       border: $primary-border;

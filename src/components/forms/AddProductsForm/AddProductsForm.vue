@@ -1,6 +1,6 @@
 <template>
   <div class="add-products-form-wrapper">
-    <form class="form" :initial-values="formValues" @submit="onSubmit">
+    <form class="form" @submit="onSubmit">
       <AddProductInput
         type="text"
         name="productName"
@@ -56,10 +56,6 @@ import SubmitButton from "@/components/UI/form/inputs/SubmitButton.vue";
 import type { IProductForm } from "@/types";
 import { useAdminStore } from "@/stores/AdminStore";
 
-const { handleSubmit } = useForm<IProductForm>({
-  validationSchema: productFormValidateSchema,
-});
-
 const formValues: IProductForm = {
   productName: "",
   productDescription: "",
@@ -69,15 +65,18 @@ const formValues: IProductForm = {
   productCover: "",
 };
 
+const { handleSubmit } = useForm<IProductForm>({
+  validationSchema: productFormValidateSchema,
+  initialValues: formValues,
+});
+
 const adminStore = useAdminStore();
 
-const onSubmit = handleSubmit( (values: IProductForm, { resetForm }) => {
-  console.log(2);
-  
+const onSubmit = handleSubmit((values: IProductForm, { resetForm }) => {
+
   adminStore.uploadProduct(values);
   resetForm();
 });
-
 </script>
 
 <style lang="scss" scoped>

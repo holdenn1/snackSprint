@@ -16,18 +16,17 @@
 </template>
 
 <script setup lang="ts">
-import { useAdminStore } from "@/stores/AdminStore";
 import { useMainStore } from "@/stores/MainStore";
 import type { ProductsListMenu } from "@/types";
 import { computed, onMounted, ref, watchEffect } from "vue";
 
-const admineStore = useAdminStore();
 const mainStore = useMainStore();
 
 const products = ref<ProductsListMenu[]>([
-  { id: 1, value: "pizza", product: "Піца", checked: true },
-  { id: 2, value: "burgers", product: "Бургери", checked: false },
-  { id: 3, value: "drinks", product: "Напої", checked: false },
+  { id: 1, value: "burgers", product: "Бургери", checked: false },
+  { id: 2, value: "roles", product: "Роли", checked: false },
+  { id: 3, value: "salads", product: "Салати", checked: false },
+  { id: 4, value: "drinks", product: "Напої", checked: false },
 ]);
 
 const checkedProducts = computed(() => {
@@ -44,8 +43,8 @@ watchEffect(() => {
   mainStore.setCheckedProducts(checkedProducts.value);
 });
 
-onMounted(() => { 
-  admineStore.fetchProducts();
+onMounted(() => {
+  mainStore.fetchProducts();
 });
 </script>
 
