@@ -17,17 +17,17 @@
 
 <script setup lang="ts">
 import { useOrderStore } from "@/stores/OrderStore";
-import type { FetchProducts } from "@/types";
+import type { Product } from "@/types";
 
 const orderStore = useOrderStore()
 
-function orderProduct(product: FetchProducts) {
+function orderProduct(product: Product) {
   orderStore.setProductModal();
   orderStore.setCurrentProduct(product);
 }
 
 const props = defineProps<{
-  products: FetchProducts[];
+  products: Product[];
 }>();
 </script>
 

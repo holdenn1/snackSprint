@@ -1,4 +1,4 @@
-import type { FetchProducts } from "@/types";
+import type { Product } from "@/types";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { realTimeDb } from "@/firebase";
@@ -6,11 +6,11 @@ import { ref as refDatabase, onValue } from "firebase/database";
 
 export const useMainStore = defineStore("mainStore", () => {
   const main = ref<{
-    pizza: FetchProducts[];
-    burgers: FetchProducts[];
-    roles: FetchProducts[];
-    salads: FetchProducts[];
-    drinks: FetchProducts[];
+    pizza: Product[];
+    burgers: Product[];
+    roles: Product[];
+    salads: Product[];
+    drinks: Product[];
     checkedProducts: string[];
     error: boolean;
    
@@ -41,7 +41,7 @@ export const useMainStore = defineStore("mainStore", () => {
     }
   }
 
-  function setProducts(products: FetchProducts[]) {
+  function setProducts(products: Product[]) {
     main.value.pizza = products.filter((pr) => pr.product == "pizza");
     main.value.burgers = products.filter((pr) => pr.product == "burgers");
     main.value.roles = products.filter((pr) => pr.product == "roles");

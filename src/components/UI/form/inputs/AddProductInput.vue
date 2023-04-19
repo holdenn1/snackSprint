@@ -3,7 +3,7 @@
     <label class="label-input" v-if="label" :for="name">{{ label }}</label>
     <input
       class="input"
-      :class="{'error-input': errorMessage }"
+      :class="{ 'error-input': errorMessage }"
       :type="type"
       :id="name"
       :name="name"
@@ -25,7 +25,7 @@ import { toRef } from "vue";
 const props = defineProps<{
   type: string;
   name: string;
-  value: string;
+  value: string | number;
   label?: string;
   placeholder: string;
 }>();
@@ -64,7 +64,7 @@ const {
       border-bottom: 1px solid black;
     }
   }
-  .error-input{
+  .error-input {
     border-bottom: 1px solid red;
   }
   .error {

@@ -16,11 +16,11 @@
 </template>
 
 <script setup lang="ts">
-import type { IProduct } from "@/types";
+import type { IProductSelectList } from "@/types";
 import { ErrorMessage, Field } from "vee-validate";
 import { ref } from "vue";
 
-const products = ref<IProduct[]>([
+const products = ref<IProductSelectList[]>([
   { id: 1, value: "pizza", product: "Піца" },
   { id: 2, value: "burgers", product: "Бургери" },
   { id: 3, value: "roles", product: "Роли" },

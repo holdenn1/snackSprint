@@ -2,7 +2,7 @@
   <div
     class="product-modal-wrapper"
     v-show="orderStore.order.isProductModalVisible"
-    @click="closeOrder"
+    @click="orderStore.setProductModal"
   >
     <div @click.stop class="product-modal">
       <div class="product" v-for="product in orderStore.order.currentProduct">
@@ -14,11 +14,23 @@
       </div>
       <div class="product__amount">
         <div class="ctrl-amount">
-          <button class="amount-btn">Думаю досить</button>
-          <span class="amount">0 грн</span>
-          <button class="amount-btn">Хочу ще</button>
+          <button
+            :disabled="!orderStore.order.amountProducts"
+            @click="orderStore.removeProduct"
+            class="amount-btn"
+          >
+            Думаю досить
+          </button>
+          <span class="amount"
+            >{{ orderStore.order.amountProducts }} кіл-ть</span
+          >
+          <button @click="orderStore.addProduct" class="amount-btn">
+            Хочу ще
+          </button>
         </div>
-        <span class="amount-all">0 грн</span>
+        <span class="amount-all">
+          Вартість замовлення - {{ orderStore.order.sumProducts }} грн
+        </span>
       </div>
       <div @click="closeOrder" class="basket">
         <span>Додати в кошик</span>
@@ -35,8 +47,10 @@ import basket from "@/img/icons/icons8-shopping-basket-smal30.png";
 const orderStore = useOrderStore();
 
 function closeOrder() {
-  orderStore.setProductModal();
-  orderStore.removeCurentProduct();
+  if (orderStore.order.sumProducts) {
+    orderStore.addToBasket();
+  }
+  return;
 }
 </script>
 

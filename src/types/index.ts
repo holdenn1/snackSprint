@@ -1,18 +1,18 @@
-export interface IProduct {
+export interface IProductSelectList {
   id: number;
   value: string;
   product: string;
 }
 
-export type ProductsListMenu = IProduct & {
+export type ProductsListMenu = IProductSelectList & {
   checked: boolean;
 };
 
 export interface IProductForm {
   productName: string;
   productDescription: string;
-  productPrice: string;
-  productWeight: string;
+  productPrice: number;
+  productWeight: number;
   product: string;
   productCover: any | string;
 }
@@ -22,6 +22,13 @@ export interface IFormValues {
   password: string;
 }
 
-export type FetchProducts = IProductForm & {
+export type Product = IProductForm & {
   id: string;
+};
+
+export type ProductInBasket = Product & {
+  amountProducts: number;
+  sumProducts: number;
+  sumAllAmountProducts: number;
+  sumAllOrder: number;
 };

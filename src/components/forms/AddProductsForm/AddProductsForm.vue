@@ -59,8 +59,8 @@ import { useAdminStore } from "@/stores/AdminStore";
 const formValues: IProductForm = {
   productName: "",
   productDescription: "",
-  productPrice: "",
-  productWeight: "",
+  productPrice: 0,
+  productWeight: 0,
   product: "",
   productCover: "",
 };
@@ -73,7 +73,6 @@ const { handleSubmit } = useForm<IProductForm>({
 const adminStore = useAdminStore();
 
 const onSubmit = handleSubmit((values: IProductForm, { resetForm }) => {
-
   adminStore.uploadProduct(values);
   resetForm();
 });
