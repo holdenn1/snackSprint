@@ -3,13 +3,15 @@
     <MainMenu />
     <ProductsList />
     <ProductModal />
+    <BasketModal />
   </div>
 </template>
 
 <script setup lang="ts">
-import ProductModal from "@/components/ProductModal/ProductModal.vue";
+import ProductModal from "@/components/modalWindows/ProductModal.vue";
 import ProductsList from "@/components/Products/ProductsList.vue";
 import MainMenu from "@/components/menu/MainMenu.vue";
+import BasketModal from "@/components/modalWindows/BasketModal.vue";
 
 </script>
 

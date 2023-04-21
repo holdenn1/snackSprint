@@ -26,9 +26,8 @@ export type Product = IProductForm & {
   id: string;
 };
 
-export type ProductInBasket = Product & {
+export type Order = Product & {
   amountProducts: number;
   sumProducts: number;
-  sumAllAmountProducts: number;
-  sumAllOrder: number;
 };
+

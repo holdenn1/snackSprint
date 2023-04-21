@@ -32,10 +32,10 @@
           Вартість замовлення - {{ orderStore.order.sumProducts }} грн
         </span>
       </div>
-      <div @click="closeOrder" class="basket">
+      <button @click="closeOrder" class="basket">
         <span>Додати в кошик</span>
         <img class="basket-img" :src="basket" alt="" />
-      </div>
+      </button>
     </div>
   </div>
 </template>
