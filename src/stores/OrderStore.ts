@@ -88,6 +88,10 @@ export const useOrderStore = defineStore("orderStore", () => {
     order.value.sumProducts = 0;
   }
 
+  function resetOrder() {
+    order.value.order = [];
+  }
+
   return {
     order,
     setProductModal,
@@ -96,5 +100,6 @@ export const useOrderStore = defineStore("orderStore", () => {
     addProduct,
     removeProduct,
     addToBasket,
+    resetOrder
   };
 });

@@ -1,0 +1,10 @@
+@import '@/styles/variables/_variables.scss';
+
+@mixin  basketBtn{
+  background-color: $primary-background;
+  color: $primary-color;
+  font-size: $fz-title;
+  font-weight: $fw-title;
+  border: $primary-border;
+  border-radius: $primary-border-radius;
+}

@@ -12,8 +12,9 @@ export const useMainStore = defineStore("mainStore", () => {
     salads: Product[];
     drinks: Product[];
     checkedProducts: string[];
+    message: string;
+    success: boolean;
     error: boolean;
-   
   }>({
     pizza: [],
     burgers: [],
@@ -21,8 +22,9 @@ export const useMainStore = defineStore("mainStore", () => {
     salads: [],
     drinks: [],
     checkedProducts: [],
+    message: "",
+    success: false,
     error: false,
-    
   });
 
   async function fetchProducts() {
@@ -53,11 +55,30 @@ export const useMainStore = defineStore("mainStore", () => {
     main.value.checkedProducts = products;
   }
 
- 
+  function toastify(status: string, message: string) {
+    switch (status) {
+      case "success": {
+        main.value.success = true;
+        main.value.error = false;
+        main.value.message = message;
+        setTimeout(() => (main.value.success = false), 1000);
+        break;
+      }
+      case "error": {
+        main.value.success = false;
+        main.value.error = true;
+        main.value.message = message;
+        setTimeout(() => (main.value.error = false), 1000);
+        break;
+      }
+    }
+  }
+
   return {
     main,
     setProducts,
     setCheckedProducts,
     fetchProducts,
+    toastify,
   };
 });

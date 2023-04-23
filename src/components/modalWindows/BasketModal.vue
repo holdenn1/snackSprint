@@ -5,7 +5,7 @@
     class="basket-modal-wrapper"
   >
     <div @click.stop class="basket-modal">
-      <div class="order-list">
+      <div v-if="orderStore.order.order.length" class="order-list">
         <div
           class="order"
           v-for="order in orderStore.order.order"
@@ -35,10 +35,16 @@
           <span class="order-dum"
             >Вартість замовлення - {{ basketStore.basket.orderSum }} грн.</span
           >
-          <button @click="basketStore.setBasketModal" class="confirm-order-btn">
+          <button @click="basketStore.orderConfirm" class="confirm-order-btn">
             Замовлення підтверджую
           </button>
         </div>
+      </div>
+      <div v-else class="empty-basket">
+        <p>Тут поки порожньо, зробіть замовлення!</p>
+        <button @click="basketStore.setBasketModal" class="close-basket-btn">
+          Закрити
+        </button>
       </div>
     </div>
   </div>
@@ -54,6 +60,7 @@ const orderStore = useOrderStore();
 
 <style lang="scss" scoped>
 @import "@/styles/mixins/contentFlexCenter.scss";
+@import "@/styles/mixins/basketBtn.scss";
 @import "@/styles/variables/variables";
 .basket-modal-wrapper {
   position: fixed;
@@ -135,12 +142,22 @@ const orderStore = useOrderStore();
       .confirm-order-btn {
         width: 280px;
         height: 50px;
-        background-color: $primary-background;
-        color: $primary-color;
-        font-size: $fz-title;
+        @include basketBtn;
+      }
+    }
+    .empty-basket {
+      height: 100%;
+      @include contentFlexCenter;
+      flex-direction: column;
+      p {
+        font-size: 26px;
         font-weight: $fw-title;
-        border: $primary-border;
-        border-radius: $primary-border-radius;
+        margin-bottom: 20px;
+      }
+      .close-basket-btn {
+        @include basketBtn;
+        width: 180px;
+        height: 40px;
       }
     }
   }

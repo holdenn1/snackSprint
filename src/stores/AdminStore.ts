@@ -4,12 +4,13 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import { ref as refDatabase, push, set } from "firebase/database";
+import { ref as refDatabase, push, set, remove } from "firebase/database";
 import { realTimeDb, storage } from "@/firebase";
-import type { IProductForm } from "@/types";
+import type { IProductForm, Product } from "@/types";
+import { useMainStore } from "@/stores/MainStore";
 
 export const useAdminStore = defineStore("adminStore", () => {
-
+  const mainStore = useMainStore();
   async function uploadProduct(product: IProductForm) {
     try {
       const metadata = {
@@ -44,13 +45,23 @@ export const useAdminStore = defineStore("adminStore", () => {
         product: product.product,
         productCover: downloadURL,
       });
+      mainStore.toastify("success", "Товар додано!");
     } catch (e) {
-      console.error(e);
+      mainStore.toastify("error", "Сталася помилка, спробуйте пізніше!");
     }
   }
 
+  async function removeProduct(product: Product) {
+    try {
+      await remove(refDatabase(realTimeDb, `products/${product.id}`));
+      mainStore.toastify("success", "Товар видалено");
+    } catch (e) {
+      mainStore.toastify("error", "Сталася помилка, спробуйте пізніше!");
+    }
+  }
 
   return {
     uploadProduct,
+    removeProduct,
   };
 });

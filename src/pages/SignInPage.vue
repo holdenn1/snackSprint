@@ -1,6 +1,6 @@
 <template>
   <RegistrationFormWrapper>
-    <SignInForm /> 
+    <SignInForm />
   </RegistrationFormWrapper>
 </template>
 

@@ -4,7 +4,7 @@
       <h1>SnakeSprint</h1>
     </RouterLink>
     <LogInButton />
-    <BasketButton />
+    <BasketButton v-if="route.path == '/'" />
     <UserMenu />
   </header>
 </template>
@@ -13,7 +13,9 @@
 import BasketButton from "@/components/UI/buttons/BasketButton.vue";
 import LogInButton from "@/components/UI/buttons/LogInButton.vue";
 import UserMenu from "@/components/account/UserMenu/UserMenu.vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
+
+const route = useRoute();
 </script>
 
 <style lang="scss" scoped>

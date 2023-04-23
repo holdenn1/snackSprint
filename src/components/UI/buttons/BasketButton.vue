@@ -11,6 +11,7 @@
 import basket from "@/img/icons/icons8-shopping-basket-big60.png";
 import { useBasketStore } from "@/stores/BasketStore";
 
+
 const basketStore = useBasketStore();
 </script>
 

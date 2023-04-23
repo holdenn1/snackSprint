@@ -7,10 +7,7 @@
       alt=""
     />
     <ul class="user-menu" v-show="userStore.user.email">
-      <li
-        v-if="userStore.user.email == 'caulfieldd17@gmail.com'"
-        class="user-menu__item"
-      >
+      <li class="user-menu__item">
         <span @click="handleLogout">Вийти</span>
       </li>
       <li class="user-menu__item">

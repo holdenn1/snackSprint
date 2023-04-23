@@ -2,7 +2,7 @@
   <RouterLink
     class="logIn-btn"
     :class="{ isAuth: !userStore.user.email }"
-    to="/sign-up"
+    to="/sign-in"
   >
     <img :src="logIn" alt="" />
   </RouterLink>

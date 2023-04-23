@@ -27,8 +27,6 @@
 import Product from "@/components/Products/Product.vue";
 import { useMainStore } from "@/stores/MainStore";
 
-
-
 const mainStore = useMainStore();
 </script>
 

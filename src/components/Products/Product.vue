@@ -8,18 +8,33 @@
     <div class="price-and-buy">
       <span class="price-and-buy__price">{{ product.productPrice }} грн.</span>
       <span>{{ product.productWeight }} г</span>
-      <button @click="orderProduct(product)" class="price-and-buy__buy">
+      <button
+        v-if="userStore.user.email !== 'caulfieldd17@gmail.com'"
+        @click="orderProduct(product)"
+        class="price-and-buy__buy"
+      >
         Замовити
+      </button>
+      <button
+        v-else
+        @click="adminStore.removeProduct(product)"
+        class="price-and-buy__buy"
+      >
+        Видалити
       </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useAdminStore } from "@/stores/AdminStore";
 import { useOrderStore } from "@/stores/OrderStore";
+import { useUserStore } from "@/stores/UserStore";
 import type { Product } from "@/types";
 
-const orderStore = useOrderStore()
+const orderStore = useOrderStore();
+const userStore = useUserStore();
+const adminStore = useAdminStore();
 
 function orderProduct(product: Product) {
   orderStore.setProductModal();

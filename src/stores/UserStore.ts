@@ -1,5 +1,6 @@
 import { auth } from "@/firebase";
 import router from "@/router";
+import { useMainStore } from "@/stores/MainStore";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,7 +10,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useUserStore = defineStore("userStore", () => {
-
+  const mainStore = useMainStore();
   const user = ref({
     id: "",
     email: "",
@@ -33,7 +34,9 @@ export const useUserStore = defineStore("userStore", () => {
         }
         router.push("/");
       })
-      .catch((e) => console.error(e));
+      .catch((e) =>
+        mainStore.toastify("error", "Перевірте правильність введених даних")
+      );
   }
 
   function signInUser(email: string, password: string) {
@@ -48,7 +51,9 @@ export const useUserStore = defineStore("userStore", () => {
           router.push("/");
         }
       })
-      .catch((e) => console.error(e));
+      .catch((e) =>
+        mainStore.toastify("error", "Перевірте правильність введених даних")
+      );
   }
 
   function logoutUser() {
