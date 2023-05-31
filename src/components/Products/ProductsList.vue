@@ -34,7 +34,7 @@ const mainStore = useMainStore();
 .products-list-wrapper {
   margin: 12px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 310px);
+  grid-template-columns: repeat(auto-fill, minmax(270px, 310px) );
   grid-auto-rows: 360px;
   justify-items: center;
   justify-content: center;

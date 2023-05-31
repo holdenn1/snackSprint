@@ -3,8 +3,16 @@
   font-size: $fz-title;
   font-weight: $fw-title;
   margin: 6px 0 10px;
+  transition-duration: 0.2s;
+  @media screen and (max-width: 767px) {
+    opacity: 0;
+  }
 }
 .main-list {
+  transition-duration: 0.2s;
+  @media screen and (max-width: 767px) {
+    opacity: 0;
+  }
   .main-item {
     font-size: 18px;
     padding: 6px;
@@ -13,6 +21,10 @@
 .list {
   margin-top: 10px;
   text-align: center;
+  transition-duration: 0.2s;
+  @media screen and (max-width: 767px) {
+    opacity: 0;
+  }
   .item {
     font-size: 18px;
     font-weight: $fw-title;
@@ -24,5 +36,21 @@
         border-bottom: 2px solid black;
       }
     }
+  }
+}
+
+.active-title-list {
+  opacity: 1;
+  color: black;
+}
+.active-main-list {
+  opacity: 1;
+  color: black;
+}
+.active-list {
+  opacity: 1;
+  color: black;
+  span{
+    font-weight: 500;
   }
 }

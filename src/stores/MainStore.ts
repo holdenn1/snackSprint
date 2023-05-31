@@ -1,10 +1,11 @@
 import type { Product } from "@/types";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref,  } from "vue";
 import { realTimeDb } from "@/firebase";
 import { ref as refDatabase, onValue } from "firebase/database";
 
 export const useMainStore = defineStore("mainStore", () => {
+ 
   const main = ref<{
     pizza: Product[];
     burgers: Product[];
@@ -15,6 +16,7 @@ export const useMainStore = defineStore("mainStore", () => {
     message: string;
     success: boolean;
     error: boolean;
+    isShowMenu: boolean;
   }>({
     pizza: [],
     burgers: [],
@@ -25,6 +27,7 @@ export const useMainStore = defineStore("mainStore", () => {
     message: "",
     success: false,
     error: false,
+    isShowMenu: true,
   });
 
   async function fetchProducts() {
@@ -74,11 +77,18 @@ export const useMainStore = defineStore("mainStore", () => {
     }
   }
 
+  function setShowMenu(status: boolean) {
+    main.value.isShowMenu = status
+  }
+
+
+
   return {
     main,
     setProducts,
     setCheckedProducts,
     fetchProducts,
     toastify,
+    setShowMenu,
   };
 });

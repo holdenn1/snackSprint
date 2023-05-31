@@ -44,6 +44,11 @@ const handleLogout = () => {
     top: 8px;
     padding-bottom: 12px;
     display: none;
+    @media screen and (max-width: 520px) {
+      top: 4px;
+      right: 10px;
+      width: 60px;
+    }
   }
 
   .user-menu {

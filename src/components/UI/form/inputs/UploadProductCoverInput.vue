@@ -35,6 +35,7 @@ const props = defineProps<{
     font-weight: $fw-title;
     color: $secondary-color;
     margin-top: 12px;
+    text-align: center;
   }
   &__input {
     margin: 12px 0 24px;

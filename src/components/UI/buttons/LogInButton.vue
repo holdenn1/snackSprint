@@ -20,6 +20,12 @@ const userStore = useUserStore();
   display: none;
   position: fixed;
   right: 20px;
+  @media screen and (max-width: 520px) {
+    top: 4px;
+    right: 22px;
+    height: 50px;
+    width: 50px;
+  }
 }
 .isAuth {
   display: block;

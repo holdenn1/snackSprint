@@ -47,6 +47,7 @@ const {
 @import "@/styles/variables/variables";
 .add-product-input {
   @include contentFlexColumn;
+  margin: 0 20px;
   .label-input {
     font-size: $fz-title;
     font-weight: $fw-title;
@@ -55,7 +56,8 @@ const {
   }
   .input {
     padding: 10px 8px;
-    width: 420px;
+    max-width: 420px;
+    width: 100%;  
     margin-bottom: 10px;
     border: none;
     border-bottom: $primary-border;

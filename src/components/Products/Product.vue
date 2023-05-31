@@ -51,7 +51,8 @@ const props = defineProps<{
 @import "@/styles/mixins/contentFlexColumn.scss";
 
 .product {
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   height: 340px;
   border: 1px solid #cecece;
   border-radius: $primary-border-radius;

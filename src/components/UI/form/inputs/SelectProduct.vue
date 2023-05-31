@@ -41,6 +41,7 @@ const props = defineProps<{
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: 0 20px; 
   .label-product {
     font-size: $fz-title;
     font-weight: $fw-title;

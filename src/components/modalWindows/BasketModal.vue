@@ -69,6 +69,7 @@ const orderStore = useOrderStore();
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 200;
   @include contentFlexCenter;
 
   .basket-modal {
@@ -89,6 +90,13 @@ const orderStore = useOrderStore();
       display: grid;
       grid-template-columns: 200px 1fr;
       grid-template-rows: 1fr 100px;
+      @media screen and (max-width: 640px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgb(139, 139, 139);
+      }
       &__product-photo {
         width: 180px;
         height: 180px;
@@ -97,6 +105,9 @@ const orderStore = useOrderStore();
       }
       &__product-info {
         grid-area: 1 / 2 / 2 / 3;
+        @media screen and (max-width: 640px) {
+          margin-bottom: 20px;
+        }
       }
       &__product-name {
         font-size: $fz-title;
@@ -128,21 +139,36 @@ const orderStore = useOrderStore();
         font-weight: 500;
         padding-bottom: 10px;
         border-bottom: 1px solid rgb(139, 139, 139);
+        @media screen and (max-width: 640px) {
+          border: none;
+        }
       }
     }
     .order-sum-container {
       width: 100%;
       display: flex;
       justify-content: space-between;
+      @media screen and (max-width: 520px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
       .order-dum {
         font-size: 22px;
         font-weight: 600;
+        @media screen and (max-width: 520px){
+          margin-bottom: 20px;
+          text-align: center;
+        }
       }
 
       .confirm-order-btn {
         width: 280px;
         height: 50px;
         @include basketBtn;
+        @media screen and (max-width: 520px){}
+        width: 240px;
+        height: 60px;
       }
     }
     .empty-basket {
@@ -153,6 +179,7 @@ const orderStore = useOrderStore();
         font-size: 26px;
         font-weight: $fw-title;
         margin-bottom: 20px;
+        text-align: center;
       }
       .close-basket-btn {
         @include basketBtn;

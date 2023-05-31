@@ -64,30 +64,46 @@ function closeOrder() {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 200;
   @include contentFlexCenter;
   .product-modal {
     max-width: 720px;
     width: 100%;
-    max-height: 360px;
-    height: 100%;
+    min-height: 360px;
     padding: 20px;
     margin: 20px;
     background-color: white;
     overflow: hidden;
     border-radius: $primary-border-radius;
     position: relative;
+    @media screen and (max-width: 374px) {
+      padding: 16px;
+    }
     .product {
       display: grid;
       grid-template-columns: 190px minmax(80px, 260px);
       margin-bottom: 30px;
+      @media screen and (max-width: 440px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
       &__photo {
         width: 160px;
         height: 160px;
         margin-right: 20px;
         object-fit: cover;
+        @media screen and (max-width: 440px) {
+          margin-right: 8px;
+          max-width: 140px;
+          min-width: 120px;
+          width: 100%;
+          height: 140px;
+        }
       }
       &__info {
         margin: 0 10px;
+        text-align: center;
       }
       &__title {
         font-size: 24px;
@@ -103,12 +119,18 @@ function closeOrder() {
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
         .ctrl-amount {
           max-width: 500px;
           width: 100%;
           margin-bottom: 30px;
           display: flex;
           justify-content: space-around;
+          @media screen and (max-width: 520px) {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+          }
           .amount-btn {
             width: 190px;
             height: 40px;
@@ -141,9 +163,7 @@ function closeOrder() {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
+      margin: 20px 0 0 auto;
       span {
         font-weight: $fw-title;
       }

@@ -45,6 +45,7 @@ const {
 @import "@/styles/variables/variables";
 .wrapper {
   @include contentFlexColumn;
+  margin: 0 20px;
   .label-area {
     font-size: $fz-title;
     font-weight: $fw-title;
@@ -53,7 +54,8 @@ const {
   }
   .area {
     padding: 10px 8px;
-    width: 420px;
+    max-width: 420px;
+    width: 100%;
     height: 120px;
     margin-bottom: 10px;
     resize: none;
