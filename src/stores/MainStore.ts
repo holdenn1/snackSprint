@@ -27,7 +27,7 @@ export const useMainStore = defineStore("mainStore", () => {
     message: "",
     success: false,
     error: false,
-    isShowMenu: true,
+    isShowMenu: false,
   });
 
   async function fetchProducts() {

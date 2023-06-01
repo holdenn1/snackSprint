@@ -64,7 +64,7 @@ function closeOrder() {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 200;
+  z-index: 500;
   @include contentFlexCenter;
   .product-modal {
     max-width: 720px;
