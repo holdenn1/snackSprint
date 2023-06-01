@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <RouterLink to="/">
-      <h1>SnakeSprint</h1>
+      <h1>SnackeSprint</h1>
     </RouterLink>
     <LogInButton />
     <BasketButton v-if="route.path == '/'" />
