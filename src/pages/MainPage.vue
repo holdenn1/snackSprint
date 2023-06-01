@@ -28,45 +28,30 @@ import { useMainStore } from "@/stores/MainStore";
 import { storeToRefs } from "pinia";
 import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 
-const width = ref(window.innerWidth);
+const store = useMainStore();
+const { main } = storeToRefs(store);
+const { setShowMenu } = store;
+
 const scrollY = ref(0);
 
 const handleScroll = () => {
   scrollY.value = window.pageYOffset;
 };
 
-const updateSize = () => {
-  width.value = window.innerWidth;
-};
-
 const scrollUp = () => {
   window.scrollTo({
     top: 0,
-    behavior: 'smooth'
-  })
+    behavior: "smooth",
+  });
 };
 
 onMounted(() => {
-  window.addEventListener("resize", updateSize);
   window.addEventListener("scroll", handleScroll);
-  updateSize();
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", updateSize);
   window.removeEventListener("scroll", handleScroll);
 });
-
-watch(width, () => {
-  if (width.value > 767) {
-    setShowMenu(false);
-  }
-});
-
-const store = useMainStore();
-
-const { main } = storeToRefs(store);
-const { setShowMenu } = store;
 </script>
 
 <style lang="scss" scoped>
@@ -93,13 +78,16 @@ const { setShowMenu } = store;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+    @media screen and (max-width: 374px) {
+      right: 14px;
+    }
 
     @keyframes arrowUp {
       0% {
-        bottom: 20px;
+        bottom: 60px;
       }
       100% {
-        bottom: 50px;
+        bottom: 120px;
       }
     }
   }

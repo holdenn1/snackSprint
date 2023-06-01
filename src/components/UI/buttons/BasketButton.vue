@@ -19,11 +19,12 @@ const basketStore = useBasketStore();
   cursor: pointer;
   position: fixed;
   right: 90px;
-  top: 18px;
+  top: 14px;
 
   @media screen and (max-width: 520px) {
     width: 50px;
     left: 16px;
+    top: 18px;
   }
 }
 </style>

@@ -106,6 +106,7 @@ const props = defineProps<{
       border: $primary-border;
       color: black;
       transition-duration: 0.8s;
+      cursor: pointer;
       &:hover {
         background: rgb(255, 102, 0);
         color: $primary-color;

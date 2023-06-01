@@ -2,8 +2,8 @@
   <div @click.stop class="menu" :class="{ 'menu-active': main.isShowMenu }">
     <img
       class="menu-arrow"
-      :class="{ 'menu-arrow_active': main.isShowMenu }"
       @click="setShowMenu(!main.isShowMenu)"
+      v-show="!main.isShowMenu && width < 767"
       :src="menuArrow"
       alt=""
     />
@@ -16,8 +16,29 @@ import MenuList from "@/components/menu/MenuList/ProductsMenuList.vue";
 import { useMainStore } from "@/stores/MainStore";
 import menuArrow from "@/img/icons/icons8-arrow-50.png";
 import { storeToRefs } from "pinia";
+import { onMounted, onBeforeUnmount, watch, ref } from "vue";
 
 const store = useMainStore();
+
+const width = ref(window.innerWidth);
+const updateSize = () => {
+  width.value = window.innerWidth;
+};
+
+onMounted(() => {
+  window.addEventListener("resize", updateSize);
+  updateSize();
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", updateSize);
+});
+
+watch(width, () => {
+  if (width.value > 767) {
+    setShowMenu(false);
+  }
+});
 
 const { main } = storeToRefs(store);
 const { setShowMenu } = store;
@@ -46,41 +67,27 @@ const { setShowMenu } = store;
     position: absolute;
     top: 40px;
     left: 30px;
-    opacity: 0;
     transition-duration: 0.3s;
     transform: rotate(180deg);
     @media screen and (max-width: 767px) {
-      opacity: 1;
       transition-delay: 0.2s;
-      position: relative;
-      z-index: 0;
-      animation-name: arrowMenu;
-      animation-duration: 0.8s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-
-      @keyframes arrowMenu {
-        0% {
-          left: 20%;
-        }
-        100% {
-          left: 50%;
-        }
-      }
     }
-  }
-  .menu-arrow_active {
-    opacity: 1;
-    transition-duration: 0.3s;
-    position: absolute;
-    top: 40px;
-    left: 30px;
-    z-index: 0;
 
-    @media screen and (max-width: 767px) {
-      transition-delay: 0s;
-      opacity: 0;
+    position: relative;
+    z-index: 0;
+    animation-name: arrowMenu;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+    @keyframes arrowMenu {
+      0% {
+        left: 20%;
+      }
+      100% {
+        left: 50%;
+      }
     }
   }
 }
