@@ -78,13 +78,27 @@ const orderStore = useOrderStore();
     max-height: 360px;
     height: 100%;
     padding: 20px;
-    margin: 20px;
+    margin: 60px 20px 20px;
     background-color: white;
-    overflow: auto;
+    overflow-y: auto;
     border-radius: $primary-border-radius;
     position: relative;
     &::-webkit-scrollbar {
-      display: none;
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #ffffff;
+      border-radius: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #3b3b3b;
+      border-radius: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #636363;
     }
     .order {
       display: grid;
@@ -148,7 +162,7 @@ const orderStore = useOrderStore();
       width: 100%;
       display: flex;
       justify-content: space-between;
-      @media screen and (max-width: 520px){
+      @media screen and (max-width: 520px) {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -156,7 +170,7 @@ const orderStore = useOrderStore();
       .order-dum {
         font-size: 22px;
         font-weight: 600;
-        @media screen and (max-width: 520px){
+        @media screen and (max-width: 520px) {
           margin-bottom: 20px;
           text-align: center;
         }
@@ -166,7 +180,8 @@ const orderStore = useOrderStore();
         width: 280px;
         height: 50px;
         @include basketBtn;
-        @media screen and (max-width: 520px){}
+        @media screen and (max-width: 520px) {
+        }
         width: 240px;
         height: 60px;
       }

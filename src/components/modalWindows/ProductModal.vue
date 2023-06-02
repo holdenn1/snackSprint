@@ -65,10 +65,12 @@ function closeOrder() {
   right: 0;
   bottom: 0;
   z-index: 500;
+  margin-top: 60px;
   @include contentFlexCenter;
   .product-modal {
     max-width: 720px;
     width: 100%;
+    max-height: 380px;
     min-height: 360px;
     padding: 20px;
     margin: 20px;
@@ -76,6 +78,25 @@ function closeOrder() {
     overflow: hidden;
     border-radius: $primary-border-radius;
     position: relative;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #ffffff;
+      border-radius: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #3b3b3b;
+      border-radius: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #636363;
+    }
     @media screen and (max-width: 374px) {
       padding: 16px;
     }
@@ -83,7 +104,7 @@ function closeOrder() {
       display: grid;
       grid-template-columns: 190px minmax(80px, 260px);
       margin-bottom: 30px;
-      @media screen and (max-width: 440px) {
+      @media screen and (max-width: 540px) {
         display: flex;
         flex-direction: column;
         align-items: center;
