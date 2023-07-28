@@ -1,7 +1,8 @@
 {
   "name": "snacksprint",
   "version": "0.0.0",
-  "private": true,
+  "homepage": "/snackSprint/",
+  "private": false,
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
