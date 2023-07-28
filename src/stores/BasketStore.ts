@@ -2,9 +2,11 @@ import { useMainStore } from "@/stores/MainStore";
 import { useOrderStore } from "@/stores/OrderStore";
 import type { Order } from "@/types";
 import { defineStore } from "pinia";
+import {useToastify} from 'vue-toastify-3'
 import { ref } from "vue";
 
 export const useBasketStore = defineStore("basketStore", () => {
+  const {toastify} = useToastify()
   const mainStore = useMainStore();
   const basket = ref<{
     orderSum: number;
@@ -31,7 +33,7 @@ export const useBasketStore = defineStore("basketStore", () => {
     orderStore.resetOrder();
     basket.value.orderSum = 0;
     basket.value.isBasketModalVisible = false;
-    mainStore.toastify("success", "Замовлення прийнято!");
+    toastify("success", "Замовлення прийнято!");
   }
 
   return {

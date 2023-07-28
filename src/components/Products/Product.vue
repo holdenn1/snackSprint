@@ -30,15 +30,21 @@
 import { useAdminStore } from "@/stores/AdminStore";
 import { useOrderStore } from "@/stores/OrderStore";
 import { useUserStore } from "@/stores/UserStore";
+import { useToastify } from "vue-toastify-3";
 import type { Product } from "@/types";
 
 const orderStore = useOrderStore();
 const userStore = useUserStore();
 const adminStore = useAdminStore();
+const { toastify } = useToastify();
 
 function orderProduct(product: Product) {
-  orderStore.setProductModal();
-  orderStore.setCurrentProduct(product);
+  if (userStore.user.email) {
+    orderStore.setProductModal();
+    orderStore.setCurrentProduct(product);
+  } else {
+    toastify("warning", "Спочатку авторизуйтесь");
+  }
 }
 
 const props = defineProps<{

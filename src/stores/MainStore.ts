@@ -58,24 +58,7 @@ export const useMainStore = defineStore("mainStore", () => {
     main.value.checkedProducts = products;
   }
 
-  function toastify(status: string, message: string) {
-    switch (status) {
-      case "success": {
-        main.value.success = true;
-        main.value.error = false;
-        main.value.message = message;
-        setTimeout(() => (main.value.success = false), 1000);
-        break;
-      }
-      case "error": {
-        main.value.success = false;
-        main.value.error = true;
-        main.value.message = message;
-        setTimeout(() => (main.value.error = false), 1000);
-        break;
-      }
-    }
-  }
+
 
   function setShowMenu(status: boolean) {
     main.value.isShowMenu = status
@@ -88,7 +71,6 @@ export const useMainStore = defineStore("mainStore", () => {
     setProducts,
     setCheckedProducts,
     fetchProducts,
-    toastify,
     setShowMenu,
   };
 });

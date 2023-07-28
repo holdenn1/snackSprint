@@ -8,9 +8,11 @@ import { ref as refDatabase, push, set, remove } from "firebase/database";
 import { realTimeDb, storage } from "@/firebase";
 import type { IProductForm, Product } from "@/types";
 import { useMainStore } from "@/stores/MainStore";
+import { useToastify } from "vue-toastify-3";
 
 export const useAdminStore = defineStore("adminStore", () => {
   const mainStore = useMainStore();
+  const { toastify } = useToastify();
   async function uploadProduct(product: IProductForm) {
     try {
       const metadata = {
@@ -45,18 +47,18 @@ export const useAdminStore = defineStore("adminStore", () => {
         product: product.product,
         productCover: downloadURL,
       });
-      mainStore.toastify("success", "Товар додано!");
+      toastify("success", "Товар додано!");
     } catch (e) {
-      mainStore.toastify("error", "Сталася помилка, спробуйте пізніше!");
+      toastify("error", "Сталася помилка, спробуйте пізніше!")
     }
   }
 
   async function removeProduct(product: Product) {
     try {
       await remove(refDatabase(realTimeDb, `products/${product.id}`));
-      mainStore.toastify("success", "Товар видалено");
+      toastify("success", "Товар видалено");
     } catch (e) {
-      mainStore.toastify("error", "Сталася помилка, спробуйте пізніше!");
+      toastify("error", "Сталася помилка, спробуйте пізніше!");
     }
   }
 

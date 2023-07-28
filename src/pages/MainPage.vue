@@ -73,22 +73,8 @@ onBeforeUnmount(() => {
     transform: rotate(270deg);
     opacity: 0;
     transition-duration: 0.2s;
-    animation-name: arrowUp;
-    animation-duration: 0.8s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
     @media screen and (max-width: 374px) {
       right: 14px;
-    }
-
-    @keyframes arrowUp {
-      0% {
-        bottom: 60px;
-      }
-      100% {
-        bottom: 120px;
-      }
     }
   }
 

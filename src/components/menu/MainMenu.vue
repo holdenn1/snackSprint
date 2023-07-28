@@ -75,20 +75,6 @@ const { setShowMenu } = store;
 
     position: relative;
     z-index: 0;
-    animation-name: arrowMenu;
-    animation-duration: 0.8s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-
-    @keyframes arrowMenu {
-      0% {
-        left: 20%;
-      }
-      100% {
-        left: 50%;
-      }
-    }
   }
 }
 

@@ -4,7 +4,7 @@
       <h1>SnackSprint</h1>
     </RouterLink>
     <LogInButton />
-    <BasketButton v-if="route.path == '/'" />
+    <BasketButton v-if="route.path == '/' && store.user.email" />
     <UserMenu />
   </header>
 </template>
@@ -13,8 +13,10 @@
 import BasketButton from "@/components/UI/buttons/BasketButton.vue";
 import LogInButton from "@/components/UI/buttons/LogInButton.vue";
 import UserMenu from "@/components/account/UserMenu/UserMenu.vue";
+import { useUserStore } from "@/stores/UserStore";
 import { RouterLink, useRoute } from "vue-router";
 
+const store = useUserStore()
 const route = useRoute();
 </script>
 
